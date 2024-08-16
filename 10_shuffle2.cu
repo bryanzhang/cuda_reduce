@@ -32,7 +32,6 @@ __global__ void reduceNeighbor(int* output, int* input) {
         int a6 = inner_input[tid + 6 * numThreads];
         int a7 = inner_input[tid + 7 * numThreads];
         int mySum = a0 + a1 + a2 + a3 + a4 + a5 + a6 + a7;
-        __syncthreads();
         mySum = warpReduce(mySum);
         int laneIdx = (tid % WARP_SIZE);
         int warpIdx = tid / WARP_SIZE;
